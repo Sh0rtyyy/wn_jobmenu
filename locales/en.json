@@ -1,0 +1,82 @@
+{
+  "billing": "Billing",
+  
+  "billing_options_title": "📋 Billing Options for Player: %s",
+  "view_paid_title": "✅ View Paid Billings",
+  "view_paid_desc": "Check all paid invoices 💸",
+  "view_unpaid_title": "⏳ View Unpaid Billings",
+  "view_unpaid_desc": "See pending invoices and dues 📄",
+  "view_created_title": "🧾 View Created Billings",
+  "view_created_desc": "View all invoices you have issued 📄",
+  "view_company_title": "🏢 View Company Billings",
+  "view_company_desc": "View all invoices issued by your company 📄",
+
+  "created_title": "🧾 Created Billings",
+  "company_title": "🏢 Company Billings",
+
+  "paid_title": "✅ Paid Billings",
+  "unpaid_title": "❌ Unpaid Billings",
+  "billing_entry_title": "💵 Billing #%s - $%s | Due: %s",
+  "billing_entry_desc": "🧐 View Details",
+
+  "create_billing_title": "📋 Create a Billing",
+  "predefined_billing_title": "📄 Select Predefined billing",
+  "predefined_billing_desc": "Choose from predefined billing templates for your job",
+  "predefined_billing_header": "Predefined billings - %s",
+  "select_player_title": "👤 Select Player%s",
+  "select_player_desc": "Select the player who will receive the bill",
+  "reason_title": "✏️ Reason%s",
+  "reason_desc": "Enter the reason for issuing this bill",
+  "amount_title": "💲 Amount%s",
+  "amount_desc": "Specify the amount to be paid",
+  "job_title": "💼 As Job%s",
+  "job_desc": "Issue this bill on behalf of your job",
+  "due_date_title": "📅 Set Due Date%s",
+  "due_date_desc": "Choose the due date for this bill",
+  "send_billing_title": "✅ Send billing",
+  "send_billing_desc": "Send this bill to the selected player",
+  "input_reason_header": "Create billing",
+  "input_reason_set": "Set Reason",
+  "input_reason_label": "Set Reason Of billing",
+  "input_amount_label": "Set Price Of billing",
+  "input_amount_set": "Set Price",
+  "input_job_label": "Set Job Of billing",
+  "input_job_checkbox": "Set job for billing as %s",
+  "input_due_label": "Set Date Of billing",
+
+  "billing_menu_title": "💼 Billing Menu",
+  "view_your_billings_title": "📄 View Your Billings",
+  "view_your_billings_desc": "Check and manage your billing history",
+  "create_billing_desc": "Issue a new billing to another player",
+
+  "my_billings_title": "📑 My Billings",
+  "view_paid_own_desc": "View all bills you've already paid",
+  "view_unpaid_own_desc": "See all outstanding bills",
+
+  "unpaid_title_alt": "Unpaid billings",
+
+  "billing_paid_title": "💳 Billing #%s - $%s | Paid On: %s",
+  "billing_unpaid_title": "💳 Billing #%s - $%s | Due by: %s",
+  "billing_details_desc": "📄 View Details",
+
+  "billing_details_title": "📄 Billing Details - #%s",
+  "billed_player": "👤 Billed Player: %s",
+  "issued_by": "📤 Issued By: %s",
+  "billing_reason": "📝 Reason: %s",
+  "billing_amount": "💰 Amount: $%s",
+  "billing_job": "🏢 Job: %s",
+  "billing_created": "📅 Created On: %s",
+  "billing_due": "⏰ Due Date: %s",
+  "billing_status": "📌 Status: %s",
+
+  "pay_now": "💵 Pay Now",
+
+  "billing_dialog_title": "💳 Billing #%s - $%s",
+  "billing_dialog_desc": "📝 Description:\n%s\n\n📤 Issued By: %s",
+  "billing_dialog_pay": "Pay",
+
+  "not_enough_money": "You don't have enough money",
+  "billing_paid_success": "You successfully paid billing #%s",
+  "billing_created_success_sender": "You successfully created billing #%s",
+  "billing_created_success_receiver": "You've received a billing"
+}
