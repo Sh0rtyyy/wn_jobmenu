@@ -8,7 +8,7 @@ for jobName, bossData in pairs(Config.BossMenu) do
         name = jobName .. "_bossmenu",
         coords = coords,
         radius = 1,
-        debug = true,
+        debug = false,
         options = {
             {
                 icon = 'fas fa-briefcase',

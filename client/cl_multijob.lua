@@ -11,8 +11,6 @@ RegisterCommand("multijob", function()
     local options = {}
     local currentJob = GetJob()
 
-    print("multijobData", json.encode(multijobData))
-
     for index, data in ipairs(multijobData) do
         local isCurrent = (currentJob and data.jobName == currentJob) and locale('current_job') or ""
         local title = (data.jobLabel or data.jobName) .. isCurrent

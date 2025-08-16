@@ -186,8 +186,6 @@ end
 function GetPlayerFromIdentifier(identifier)
     if Config.Framework == "ESX" then
         local xPlayer = ESX.GetPlayerFromIdentifier(identifier)
-        print("xPlayer", json.encode(xPlayer))
-        print("identifier", identifier)
         return xPlayer
     elseif Config.Framework == "qbcore" then
         local xPlayer = QBCore.Functions.GetPlayerByCitizenId(identifier)

@@ -68,7 +68,6 @@ RegisterNetEvent('wn_multijob:updateGrade', function(identifier, job, grade)
         { grade, identifier, job }
     )
 
-    print(("Updated job %s for %s to grade %s"):format(job, identifier, grade))
 end)
 
 RegisterNetEvent('wn_multijob:firePlayer', function(identifier, job)
@@ -90,7 +89,6 @@ RegisterNetEvent('wn_multijob:firePlayer', function(identifier, job)
 
     local player = GetPlayerFromIdentifier(identifier)
     if player ~= nil then
-        print("idk")
         if Config.Framework == "ESX" then
             player.setJob("unemployed", 0)
         elseif Config.Framework == "qbcore" then
@@ -99,6 +97,4 @@ RegisterNetEvent('wn_multijob:firePlayer', function(identifier, job)
             exports.qbx_core:SetJob(player, "unemployed", 0)
         end
     end
-
-    print(("Deleted job %s for %s"):format(job, identifier))
 end)
