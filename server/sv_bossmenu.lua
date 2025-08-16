@@ -1,6 +1,5 @@
 lib.callback.register('wn_multijob:getEmployeesWithJob', function(source, jobName)
     local allPlayers = MySQL.query.await('SELECT identifier, job, job_grade FROM users WHERE job = ?', { jobName })
-    print("allPlayers", json.encode(allPlayers))
 
     for i, row in ipairs(allPlayers) do
         row.jobData = RequestJobData(jobName)
@@ -9,13 +8,11 @@ lib.callback.register('wn_multijob:getEmployeesWithJob', function(source, jobNam
         row.jobGradeSalary = GetJobGradeSalary(row.job, row.job_grade)
     end
 
-    print("allPlayers 2", json.encode(allPlayers))
     return allPlayers
 end)
 
 lib.callback.register('wn_multijob:getJobData', function(source, jobName)
     local jobData = RequestJobData(jobName)
-       
     return jobData
 end)
 
@@ -64,7 +61,6 @@ RegisterNetEvent('wn_multijob:updateGrade', function(identifier, job, grade)
         return
     end
 
-    -- Update the grade
     MySQL.update.await(
         'UPDATE wn_multijob SET jobGrade = ? WHERE identifier = ? AND jobName = ?',
         { grade, identifier, job }
@@ -84,7 +80,6 @@ RegisterNetEvent('wn_multijob:firePlayer', function(identifier, job)
         return
     end
 
-    -- Update the grade
     MySQL.update.await(
         'DELETE FROM wn_multijob WHERE identifier = ? AND jobName = ?',
         { identifier, job }

@@ -1,7 +1,7 @@
 -- DB STRUCTURA
 -- ID   INDEX DAT
 -- identifier - indentifier hráča
--- jobName = job name 
+-- jobName = job name
 -- jobGrade = job grade
 
 RegisterCommand("multijob", function()
@@ -12,10 +12,10 @@ RegisterCommand("multijob", function()
     print("multijobData", json.encode(multijobData))
 
     for index, data in ipairs(multijobData) do
-        local isCurrent = (currentJob and data.jobName == currentJob) and " (Current)" or ""
+        local isCurrent = (currentJob and data.jobName == currentJob) and locale('current_job') or ""
         local title = (data.jobLabel or data.jobName) .. isCurrent
 
-        local description = ("Grade: %s \n Salary: $%s"):format(
+        local description = (locale('job_desc')):format(
             data.jobGradeLabel .. " [" .. data.jobGrade .. "]" or ("Grade " .. data.jobGrade .. " [" .. data.grade .. "]"),
             data.jobGradeSalary or 0
         )
@@ -31,7 +31,7 @@ RegisterCommand("multijob", function()
 
     lib.registerContext({
         id = 'multijob_menu',
-        title = 'Multijob Menu',
+        title = locale('multijob_menu_title'),
         options = options
     })
 
@@ -41,12 +41,12 @@ end)
 function SeeDetails(data)
     local displayChoices = {
         id = 'job_actions',
-        title = 'Job Actions',
+        title = locale('job_actions_title'),
         menu = 'multijob_menu',
         options = {
             {
-                title = 'Switch Job',
-                description = ('Switch your job to: %s'):format(data.jobLabel),
+                title = locale('switch_job_title'),
+                description = (locale('switch_job_desc')):format(data.jobLabel),
                 icon = 'fa-solid fa-circle-check',
                 onSelect = function()
                     TriggerServerEvent('wn_jobmenu:changeJob', data.jobName, data.jobGrade)
@@ -54,8 +54,8 @@ function SeeDetails(data)
                 end,
             },
             {
-                title = 'Delete Job',
-                description = ('Delete the selected job: %s'):format(data.jobLabel),
+                title = locale('delete_job_title'),
+                description = (locale('delete_job_desc')):format(data.jobLabel),
                 icon = 'fa-solid fa-trash-can',
                 onSelect = function()
                     TriggerServerEvent('wn_jobmenu:deleteJob', data.jobName, data.jobGrade)

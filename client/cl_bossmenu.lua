@@ -9,9 +9,8 @@ for jobName, bossData in pairs(Config.BossMenu) do
         debug = true,
         options = {
             {
-                icon = 'fas fa-briefcase', 
-                label = "Open Boss Menu", 
-                targeticon = 'fas fa-sign-in-alt',
+                icon = 'fas fa-briefcase',
+                label = locale('open_boss_menu_label'),
                 onSelect = function()
                     local playerGrade = GetJobGradeLabel()
                     for _, grade in ipairs(grades) do
@@ -27,18 +26,16 @@ end
 function OpenBossMenu(job)
     local options = {
         {
-            title = "Manage Players",
-            description = "View employees, their grades, salary, and fire them",
+            title = locale('manage_players_title'),
+            description = locale('manage_players_desc'),
             onSelect = function()
-                -- Open Manage Players submenu or trigger event
                 TriggerEvent('bossmenu:managePlayers', job)
             end
         },
         {
-            title = "Manage Job Finances",
-            description = "Withdraw and deposit job money",
+            title = locale('manage_finances_title'),
+            description = locale('manage_finances_desc'),
             onSelect = function()
-                -- Open Job Finances submenu or trigger event
                 TriggerEvent('bossmenu:manageFinances', job)
             end
         },
@@ -57,13 +54,11 @@ function ManageGrade(jobData)
     local gradeOptions = {}
     local gradesList = {}
 
-    -- Collect grade keys so we can sort them
     for grade in pairs(jobData.grades) do
         table.insert(gradesList, grade)
     end
     table.sort(gradesList)
 
-    -- Build options from sorted grades
     for _, grade in ipairs(gradesList) do
         local gradeInfo = jobData.grades[grade]
         table.insert(gradeOptions, {
@@ -72,10 +67,10 @@ function ManageGrade(jobData)
         })
     end
 
-    local input = lib.inputDialog("Choose grade", {
+    local input = lib.inputDialog(locale('choose_grade_title'), {
         {
             type = 'select',
-            label = "Choose grade",
+            label = locale('choose_grade_label'),
             required = true,
             options = gradeOptions
         }
@@ -85,8 +80,8 @@ function ManageGrade(jobData)
 end
 
 function FirePlayer()
-    local input = lib.inputDialog('Fire this employee ?', {
-        {type = 'checkbox', label = "Fire employee", required = true}
+    local input = lib.inputDialog(locale('fire_employee_confirm'), {
+        {type = 'checkbox', label = locale('fire_employee_label')}
     })
 
     return input[1]
@@ -105,15 +100,15 @@ RegisterNetEvent('bossmenu:managePlayers', function(job)
 
         table.insert(options, {
             title = ("%s (%s)"):format(playerName, gradeLabel),
-            description = ("Salary: $%d"):format(salaryAmount),
+            description = (locale('salary_desc')):format(salaryAmount),
             onSelect = function()
                 lib.registerContext({
                     id = 'boss_fire_player_' .. emp.identifier,
-                    title = "Manage " .. playerName,
+                    title = (locale('manage_player_title')):format(playerName),
                     options = {
                         {
-                            title = "Fire Player",
-                            description = "Remove this player from the job",
+                            title = locale('fire_player_title'),
+                            description = locale('fire_player_desc'),
                             onSelect = function()
                                 local fire = FirePlayer()
                                 if not fire then return end
@@ -122,15 +117,15 @@ RegisterNetEvent('bossmenu:managePlayers', function(job)
                             end
                         },
                         {
-                            title = "Manage Grade",
-                            description = "Manage this player grade",
+                            title = locale('manage_grade_title'),
+                            description = locale('manage_grade_desc'),
                             onSelect = function()
                                 local newGrade = ManageGrade(emp.jobData)
                                 TriggerServerEvent("wn_multijob:updateGrade", emp.identifier, jobName, newGrade)
                             end
                         },
                         {
-                            title = "Back",
+                            title = locale('back_title'),
                             onSelect = function()
                                 lib.showContext('bossmenu_managePlayers')
                             end
@@ -143,7 +138,7 @@ RegisterNetEvent('bossmenu:managePlayers', function(job)
     end
 
     table.insert(options, {
-        title = "Back",
+        title = locale('back_title'),
         onSelect = function()
             lib.showContext('boss_menu')
         end
@@ -151,7 +146,7 @@ RegisterNetEvent('bossmenu:managePlayers', function(job)
 
     lib.registerContext({
         id = 'bossmenu_managePlayers',
-        title = "Manage Players",
+        title = locale('manage_players_title'),
         options = options
     })
 
@@ -161,34 +156,29 @@ end)
 -- Manage Finances Event
 RegisterNetEvent('bossmenu:manageFinances', function(job)
     local money = lib.callback.await('wn_multijob:getJobMoney', false, job)
-    print(money)
 
     local options = {
         {
-            title = "You have " .. money .. "$ in your company",
+            title = (locale('company_money_title')):format(money),
         },
         {
-            title = "Withdraw Money",
-            description = "Withdraw money from the job account",
+            title = locale('withdraw_money_title'),
+            description = locale('withdraw_money_desc'),
             onSelect = function()
-                -- Open UI or prompt for withdraw amount
                 local amount = WithdrawMoney()
-                print(amount)
                 lib.callback.await('wn_multijob:manageMoney', false, "remove", job, amount)
             end
         },
         {
-            title = "Deposit Money",
-            description = "Deposit money to the job account",
+            title = locale('deposit_money_title'),
+            description = locale('deposit_money_desc'),
             onSelect = function()
-                -- Open UI or prompt for deposit amount
                 local amount = WithdrawMoney()
-                print(amount)
                 lib.callback.await('wn_multijob:manageMoney', false, "add", job, amount)
             end
         },
         {
-            title = "Back",
+            title = locale('back_title'),
             onSelect = function()
                 lib.showContext('boss_menu')
             end
@@ -197,18 +187,16 @@ RegisterNetEvent('bossmenu:manageFinances', function(job)
 
     lib.registerContext({
         id = 'bossmenu_manageFinances',
-        title = "Manage Job Finances",
+         title = locale('manage_finances_title'),
         options = options
     })
 
     lib.showContext('bossmenu_manageFinances')
 end)
 
--- Placeholder withdraw money event
 function WithdrawMoney()
-    -- Show input dialog for amount (replace with your UI method)
-    local input = lib.inputDialog('Withdraw Money', {
-        { type = 'number', label = 'Amount', min = 1 }
+    local input = lib.inputDialog(locale('withdraw_money_title'), {
+        { type = 'number', label = locale('amount_label'), min = 1 }
     }, function(values, canceled)
         if canceled then return end
     end)
