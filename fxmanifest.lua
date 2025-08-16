@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'mrshortyno'
-description 'Advanced billing system for ESX, QBCORE and QBOX'
+description 'Multijob and boss menu for ESX, QBCORE and QBOX'
 version '1.0.0'
 lua54 'yes'
 
@@ -22,15 +22,4 @@ shared_scripts {
 
 files {
 	'locales/*.json',
-}
-
-escrow_ignore {
-    'locales/*.lua',
-    'config.lua',
-    'client/functions.lua',
-    'server/functions.lua',
-    'install/*.txt',
-    'install/*.sql',
-	'install/*.md',
-    'install/images/.png',
 }

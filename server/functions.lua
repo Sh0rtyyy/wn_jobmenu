@@ -3,7 +3,7 @@ local webhook = "https://discord.com/api/webhooks/"
 if Config.Framework == "ESX" then
     ESX = exports["es_extended"]:getSharedObject()
     RegisterUsable = ESX.RegisterUsableItem
-    Wait(5000)
+    Wait(2000)
     AllJobs = ESX.GetJobs()
 elseif Config.Framework == "qbcore" then
     QBCore = nil

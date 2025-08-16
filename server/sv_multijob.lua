@@ -1,3 +1,5 @@
+lib.locale()
+
 lib.callback.register('wn_jobmenu:requestMultijobData', function(source)
     local playerIdentifier = GetIdentifier(source)
     local result = MySQL.query.await(
@@ -37,8 +39,20 @@ RegisterNetEvent('wn_jobmenu:addJob', function(source, job, grade)
     local src = source
     local playerIdentifier = GetIdentifier(src)
 
-    MySQL.insert.await(
-        'INSERT INTO wn_multijob (identifier, jobName, jobGrade) VALUES (?, ?, ?)',
-        { playerIdentifier, job, grade }
+    local hasJob = MySQL.scalar.await(
+        'SELECT 1 FROM wn_multijob WHERE identifier = ? AND jobName = ? LIMIT 1',
+        { playerIdentifier, job }
     )
+
+    if hasJob then
+        MySQL.update.await(
+            'UPDATE wn_multijob SET jobGrade = ? WHERE identifier = ? AND jobName = ?',
+            { grade, playerIdentifier, job }
+        )
+    else
+        MySQL.insert.await(
+            'INSERT INTO wn_multijob (identifier, jobName, jobGrade) VALUES (?, ?, ?)',
+            { playerIdentifier, job, grade }
+        )
+    end
 end)

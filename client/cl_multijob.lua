@@ -1,3 +1,5 @@
+lib.locale()
+
 -- DB STRUCTURA
 -- ID   INDEX DAT
 -- identifier - indentifier hráča

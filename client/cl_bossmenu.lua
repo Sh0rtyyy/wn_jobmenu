@@ -1,3 +1,5 @@
+lib.locale()
+
 for jobName, bossData in pairs(Config.BossMenu) do
     local grades = bossData.grades or {}
     local coords = bossData.coords

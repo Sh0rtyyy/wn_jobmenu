@@ -1,3 +1,5 @@
+lib.locale()
+
 lib.callback.register('wn_multijob:getEmployeesWithJob', function(source, jobName)
     local allPlayers = MySQL.query.await('SELECT identifier, job, job_grade FROM users WHERE job = ?', { jobName })
 

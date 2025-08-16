@@ -8,7 +8,7 @@ Config.Notify = "ox_lib" -- ox_lib, qbcore or ESX
 Config.BossMenu = {
     police = {
         grades = {"boss"},
-        coords = vector3(1838.7886, 3673.5771, 34.2766)
+        coords = vector3(446.8332, -974.6085, 31.4390)
     },
     ambulance = {
         grades = {"boss"},
