@@ -35,6 +35,20 @@ RegisterNetEvent('wn_jobmenu:changeJob', function(job, grade)
     SetJob(src, jobChange, jobChangeGrade)
 end)
 
+RegisterNetEvent('wn_jobmenu:deleteJob', function(job, grade)
+    local src = source
+    local jobChange = job
+    local jobChangeGrade = grade
+    local playerIdentifier = GetIdentifier(src)
+
+    MySQL.query.await(
+        'DELETE FROM wn_multijob WHERE identifier = ? AND jobName = ? AND jobGrade = ?',
+        { playerIdentifier, jobChange, jobChangeGrade }
+    )
+
+    SetJob(src, Config.UnemployedJob, 0)
+end)
+
 RegisterNetEvent('wn_jobmenu:addJob', function(source, job, grade)
     local src = source
     local playerIdentifier = GetIdentifier(src)

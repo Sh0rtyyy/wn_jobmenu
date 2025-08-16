@@ -6,7 +6,7 @@ lib.locale()
 -- jobName = job name
 -- jobGrade = job grade
 
-RegisterCommand("multijob", function()
+RegisterCommand(Config.Command, function()
     local multijobData = lib.callback.await('wn_jobmenu:requestMultijobData')
     local options = {}
     local currentJob = GetJob()
@@ -50,7 +50,7 @@ function SeeDetails(data)
                 icon = 'fa-solid fa-circle-check',
                 onSelect = function()
                     TriggerServerEvent('wn_jobmenu:changeJob', data.jobName, data.jobGrade)
-                    ExecuteCommand('multijob')
+                    ExecuteCommand(Config.Command)
                 end,
             },
             {
@@ -59,7 +59,7 @@ function SeeDetails(data)
                 icon = 'fa-solid fa-trash-can',
                 onSelect = function()
                     TriggerServerEvent('wn_jobmenu:deleteJob', data.jobName, data.jobGrade)
-                    ExecuteCommand('multijob')
+                    ExecuteCommand(Config.Command)
                 end,
             },
         }
